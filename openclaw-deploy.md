@@ -24,6 +24,7 @@
 - **API Key**: `xxxxx`
 - 获取地址：https://www.minimaxi.com/
 
+
 ### 3. 系统要求
 - macOS 系统
 - 已安装 Homebrew
@@ -100,67 +101,10 @@ openclaw config set gateway.mode "local"
 
 ---
 
-### 步骤 4：配置 AI 模型
 
-#### 方案 A：使用 OpenRouter（推荐）
 
-**1. 创建认证文件：**
-```bash
-mkdir -p ~/.openclaw/agents/main/agent
-cat > ~/.openclaw/agents/main/agent/auth-profiles.json <<EOF
-{
-  "openrouter:manual": {
-    "provider": "openrouter",
-    "apiKey": "sk-or-v1-xxxxx"
-  }
-}
-EOF
-```
 
-**2. 设置默认模型：**
-```bash
-# 使用免费的 Qwen3 Coder 模型
-openclaw models set openrouter/qwen/qwen3-coder:free
-
-# 或使用其他免费模型
-# openclaw models set openrouter/google/gemma-3-27b-it:free
-# openclaw models set openrouter/openrouter/free
-```
-
-#### 方案 B：使用本地 Ollama（完全免费，无需 API Key）
-
-**1. 安装 Ollama：**
-```bash
-brew install ollama
-```
-
-**2. 下载模型：**
-```bash
-ollama pull qwen3:8b
-```
-
-**3. 创建认证文件：**
-```bash
-cat > ~/.openclaw/agents/main/agent/auth-profiles.json <<EOF
-{
-  "ollama:manual": {
-    "provider": "ollama",
-    "apiKey": "none"
-  }
-}
-EOF
-```
-
-**4. 设置默认模型：**
-```bash
-openclaw models set ollama/qwen3:8b
-```
-
-**注意：** Ollama 方案可能存在兼容性问题，推荐使用 OpenRouter。
-
----
-
-### 步骤 5：启动并验证 Gateway
+### 步骤 4：启动并验证 Gateway
 
 ```bash
 # 重启 Gateway 服务
